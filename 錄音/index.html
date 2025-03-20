@@ -60,14 +60,14 @@
 
     <!-- 音頻播放器和下載按鈕 -->
     <div id="audio-player">
-        <audio id="audio" controls>
+        <audio id="audio" controls crs="1.m4a">
             <source id="audio-source" src="" type="audio/mpeg">
             您的瀏覽器不支持音頻播放。
         </audio>
-        <button id="download-button">下載 MP3</button>
+        <button id="download-button" href="1.m4a">下載 m4a</button>
     </div>
 
-    <script>
+    <!-- <script>
         // 自動為沒有副檔名的檔案添加 .mp3 並播放
         window.onload = function() {
             const audioElement = document.getElementById('audio');
@@ -93,6 +93,6 @@
                 document.body.removeChild(link);
             });
         };
-    </script>
+    </script> -->
 </body>
 </html>
