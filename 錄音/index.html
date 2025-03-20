@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>語音分享平台</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #icon {
+            width: 80px; /* 調整 ICON 大小 */
+            height: 80px;
+        }
+        #recording-label {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        #audio-player {
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        #download-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #download-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- 上方中央的 ICON 和「錄音」文字 -->
+    <div id="header">
+        <img id="icon" src="icon.png" alt="錄音 ICON">
+        <div id="recording-label">錄音</div>
+    </div>
+
+    <!-- 音頻播放器和下載按鈕 -->
+    <div id="audio-player">
+        <audio id="audio" controls>
+            <source id="audio-source" src="" type="audio/mpeg">
+            您的瀏覽器不支持音頻播放。
+        </audio>
+        <button id="download-button">下載 MP3</button>
+    </div>
+
+    <script>
+        // 自動為沒有副檔名的檔案添加 .mp3 並播放
+        window.onload = function() {
+            const audioElement = document.getElementById('audio');
+            const audioSource = document.getElementById('audio-source');
+            const downloadButton = document.getElementById('download-button');
+
+            // 假設檔案名為 '1'，並且沒有副檔名
+            const fileName = '1'; // 這裡可以根據實際情況動態獲取
+            const fullPath = fileName + '.m4a'; // 自動添加 .m4a 副檔名
+
+            // 設置音頻來源
+            audioSource.src = fullPath;
+            audioElement.load(); // 重新加載音頻
+            audioElement.play(); // 自動播放
+
+            // 下載按鈕功能
+            downloadButton.addEventListener('click', () => {
+                const link = document.createElement('a');
+                link.href = fullPath;
+                link.download = '錄音.m4a'; // 下載的檔案名稱
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        };
+    </script>
+</body>
+</html>
